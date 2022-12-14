@@ -1,0 +1,27 @@
+Tasks
+
+Goal: Demonstrate ability to build AWS infrastructure using Terraform. This infrastructure does not need to stay up after you get it working. But these resources should be able to be easily reprovisioned via terraform init and terraform apply.
+
+Deliverable: A zipped up terraform project. It should be able to be unzipped and run with minimal configuration.
+
+Objective A: Provision a simple workload on AWS
+
+- Create a VPC with three public and three private subnets across three Availability Zones (AZs)
+- Deploy a highly available stateless application (replicas running in multiple AZs) in private subnets.
+Use whichever runtime service you prefer, EC2 (suggest via Autoscaling Groups), ECS, EKS, Lambda, Elastic Beanstalk, etc.
+Application should include a web-server. Feel free to just use a simple docker image such as nginx:latest, anything that returns an http 200.
+- Enable access to this application via an Application Load Balancer (ALB) or Network Load Balancer (NLB).
+- Provide the application endpoint via a terraform output to make the verification process more simple.
+
+Objective B: Provision an IAM user or role with access to an S3 bucket
+
+- Create an S3 bucket, add a test file to it (can just be an empty test.txt).
+- Create an IAM user, with permission only to access that S3 bucket and copy down the test file.
+
+Bonus: Create an IAM role that can be assumed by your user. Give this role only permission to access the S3 bucket and copy down the test file.
+
+Objective C: Provision a secret in AWS secrets manager.
+
+- Create a random password and upload it to secrets manager.
+
+Bonus: Use the External Secrets Operator to make this secret available to your sample-app pod.
